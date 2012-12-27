@@ -1,8 +1,7 @@
 package com.tacitknowledge.cobertura.report;
 
 /**
- * Created by IntelliJ IDEA. User: byao Date: 12/21/12 Time: 12:00 PM To change this template use File | Settings | File
- * Templates.
+ * Package coverage configuration
  */
 public class PackageConfig
 {

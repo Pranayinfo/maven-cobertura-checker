@@ -7,8 +7,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 /**
- * Created by IntelliJ IDEA. User: byao Date: 12/21/12 Time: 9:52 AM To change this template use File | Settings | File
- * Templates.
+ * Unit tests for CheckCoberturaXMLReportMojo
  */
 public class CheckReportTest
 {

@@ -21,8 +21,7 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 /**
- * Created by IntelliJ IDEA. User: byao Date: 12/21/12 Time: 9:52 AM To change this template use File | Settings | File
- * Templates.
+ * Check Task
  */
 public class CheckReport
 {
