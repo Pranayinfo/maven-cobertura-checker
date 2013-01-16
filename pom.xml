@@ -51,6 +51,7 @@
 
     <build>
         <plugins>
+            <!-- What is this? it generates a HelpMojo object for the plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-plugin-plugin</artifactId>
