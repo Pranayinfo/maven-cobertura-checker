@@ -2,10 +2,7 @@ package com.tacitknowledge.cobertura.report;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -16,6 +13,7 @@ import javax.xml.xpath.XPathExpression;
 import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
 
+import com.sun.deploy.util.OrderedHashSet;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
@@ -30,7 +28,8 @@ public class CheckReport
     public Double minimumTotalLineRate = 0.0;
     public Double minimumGlobalBranchRatePerPackage = 0.0;
     public Double minimumGlobalLineRatePerPackage = 0.0;
-    private HashSet<PackageConfig> packageConfigs = new HashSet<PackageConfig>();
+    //use a sorted set so that specific package configs have precedence over wildcards
+    private SortedSet<PackageConfig> packageConfigs = new TreeSet<PackageConfig>();
 
     public Set<CoverageResult> execute()
     {

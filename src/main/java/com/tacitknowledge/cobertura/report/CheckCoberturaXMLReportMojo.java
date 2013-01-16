@@ -59,7 +59,9 @@ public class CheckCoberturaXMLReportMojo
     )
     private File inputFile;
 
-    @Parameter
+    @Parameter(
+            alias = "packages"
+    )
     private List<PackageConfig> packageConfigs;
 
     @Parameter(
@@ -87,11 +89,13 @@ public class CheckCoberturaXMLReportMojo
     private Double minTotalLine = 0.0;
 
     @Parameter(
+        alias = "haltOnFailure",
         property = "cobertura.checker.halt.on.failure"
     )
     private Boolean haltOnFailure = Boolean.TRUE;
 
     @Parameter(
+        alias = "skip",
         property = "cobertura.checker.skip"
     )
     private boolean skip = false;

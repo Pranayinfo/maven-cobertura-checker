@@ -10,7 +10,9 @@
     <name>Cobertura XML Check Maven Plugin</name>
     <description>The standard Cobertura maven plugin processes cobertura classes, not the XML report for threshold
         checks.  This becomes a barrier when generating the cobertura report using tools like testacular, a coverage
-        utility for Java Script.  This plugin will parse the report and perform threshold checks
+        utility for Java Script.  This plugin will parse the report and perform threshold checks.
+
+        It targets the http://cobertura.sourceforge.net/xml/coverage-04.dtd
     </description>
 
     <url>http://www.tacitknowledge.com</url>

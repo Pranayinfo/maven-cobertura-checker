@@ -4,7 +4,7 @@ package com.tacitknowledge.cobertura.report;
  * Package coverage configuration
  *
  */
-public class PackageConfig
+public class PackageConfig implements Comparable<PackageConfig>
 {
     /**
      * Prefixes allow for wild cards.  for instance java.lang.*
@@ -68,6 +68,14 @@ public class PackageConfig
         }
 
         return true;
+    }
+
+    public int compareTo(PackageConfig packageConfig) {
+        if ((packageConfig.nameOrPrefix.endsWith("*") && nameOrPrefix.endsWith("*"))
+                || (!packageConfig.nameOrPrefix.endsWith("*") && !nameOrPrefix.endsWith("*")))
+            return nameOrPrefix.compareTo(packageConfig.nameOrPrefix);
+        if (nameOrPrefix.endsWith("*")) return -1;
+        return 1;
     }
 
     @Override
