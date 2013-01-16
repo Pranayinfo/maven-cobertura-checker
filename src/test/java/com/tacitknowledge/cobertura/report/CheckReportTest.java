@@ -59,7 +59,7 @@ public class CheckReportTest
     }
 
     @Test
-    public void testCheckReportPackageConfigOverrides() throws Exception {
+    public void testCheckReportPackageConfigOverridesWithWildcard() throws Exception {
 
         CheckReport checkReport = new CheckReport();
         checkReport.setMinimumGlobalBranchRatePerPackage(5.0);
@@ -69,6 +69,19 @@ public class CheckReportTest
         Collection<CoverageResult> coverageFailures = checkReport.execute();
         assertEquals(2,coverageFailures.size());
     }
+    @Test
+    public void testCheckReportPackageConfigOverridesNoWildcard() throws Exception {
+
+        CheckReport checkReport = new CheckReport();
+        checkReport.setMinimumGlobalBranchRatePerPackage(5.0);
+        checkReport.addPackageConfig(new PackageConfig("js",0.0,0.0));
+        checkReport.setXMLDataFile(new File("src/test/resources/coverage.xml"));
+
+        Collection<CoverageResult> coverageFailures = checkReport.execute();
+        assertEquals(2,coverageFailures.size());
+    }
+
+
     @Test
     public void testCheckReportPackageConfigFailure() throws Exception {
 

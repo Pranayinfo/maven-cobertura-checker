@@ -65,7 +65,7 @@ public class CheckReport
                 CoverageResult totalResult = new CoverageResult("average over all packages");
                 coverageResults.add(totalResult);
             }
-            //check global packages
+            //check global package rules
             NodeList branchNodeList = (NodeList) packagesGlobalBranchRateExpression.evaluate(doc,
                 XPathConstants.NODESET);
             NodeList lineNodeList = (NodeList) packagesGlobalLineRateExpression.evaluate(doc,
@@ -73,28 +73,46 @@ public class CheckReport
             addPackagesFailingFromNodeList(coverageResults, branchNodeList);
             addPackagesFailingFromNodeList(coverageResults, lineNodeList);
 
-            //check regex package overrides
+            //check package overrides, including wildcards
             for ( PackageConfig packageConfig : packageConfigs )
             {
-                String regex = packageConfig.getRegex();
-                if ( regex.endsWith(".*") )
+                String nameOrPrefix = packageConfig.getNameOrPrefix();
+                String lineSearchValue = null;
+                String branchSearchValue = null;
+                String removalSearch = null;
+
+                //if wildcards, we'll use the starts-with xpath expression
+                if ( nameOrPrefix.endsWith(".*") )
                 {
-                    regex = regex.substring(0, regex.lastIndexOf("*"));
+                    nameOrPrefix = nameOrPrefix.substring(0, nameOrPrefix.lastIndexOf("*"));
+                    //lineRate query using starts-with
+                    lineSearchValue = "/coverage/packages/package[starts-with(@name,'" + nameOrPrefix +
+                        "') and  @line-rate<" + packageConfig.getLineRate() + "]/@name";
+                    //branch rate query using starts with
+                    branchSearchValue = "/coverage/packages/package[starts-with(@name,'" + nameOrPrefix +
+                        "') and @branch-rate<" + packageConfig.getBranchRate() + "]/@name";
+                    removalSearch = "/coverage/packages/package[starts-with(@name,'" + nameOrPrefix +
+                        "')]/@name";
+                } else {
+                    //line rate query for specific package
+                    lineSearchValue = "/coverage/packages/package[@name='" + nameOrPrefix +
+                        "' and  @line-rate<" + packageConfig.getLineRate() + "]/@name";
+
+                    //branch rate query for specific package
+                    branchSearchValue = "/coverage/packages/package[@name='" + nameOrPrefix +
+                        "' and @branch-rate<" + packageConfig.getBranchRate() + "]/@name";
+
+                    removalSearch = "/coverage/packages/package[@name='" + nameOrPrefix +
+                        "']/@name";
+
                 }
 
-                //remove any package overrides
-                removeOverridenPackageFailures(coverageResults, doc, xpath, regex);
+                //remove - override - global package entries if package is explicitly specified in config
+                removeOverridenPackageFailures(coverageResults, doc, xpath, removalSearch);
+                addPackagesFailingRegex(coverageResults, doc, xpath, lineSearchValue);
+                addPackagesFailingRegex(coverageResults, doc, xpath, branchSearchValue);
 
-                //Find Override Failures
-                //line rate
-                String searchValue = "/coverage/packages/package[starts-with(@name,'" + regex +
-                    "') and @line-rate<" + packageConfig.getLineRate() + "]/@name";
-                addPackagesFailingRegex(coverageResults, doc, xpath, searchValue);
 
-                //branch rate
-                searchValue = "/coverage/packages/package[starts-with(@name,'" + regex +
-                    "') and @branch-rate<" + packageConfig.getBranchRate() + "]/@name";
-                addPackagesFailingRegex(coverageResults, doc, xpath, searchValue);
             }
         }
         catch ( XPathExpressionException e )
@@ -106,11 +124,9 @@ public class CheckReport
     }
 
     private void removeOverridenPackageFailures(Set<CoverageResult> coverageResults, Document doc, XPath xpath,
-        String regex) throws XPathExpressionException
+        String removalString) throws XPathExpressionException
     {
-        String searchValue = "/coverage/packages/package[starts-with(@name,'" + regex +
-            "')]/@name";
-        XPathExpression expression = xpath.compile(searchValue);
+        XPathExpression expression = xpath.compile(removalString);
         NodeList matchingPackages = (NodeList) expression.evaluate(doc, XPathConstants.NODESET);
         List<CoverageResult> removalList = new ArrayList<CoverageResult>();
         for ( int i = 0; i < matchingPackages.getLength(); i++ )
@@ -131,7 +147,6 @@ public class CheckReport
     private void addPackagesFailingRegex(Set<CoverageResult> coverageResults, Document doc, XPath xpath,
         String searchValue) throws XPathExpressionException
     {
-//        System.out.println(searchValue);
         XPathExpression expression = xpath.compile(searchValue);
         NodeList matchingPackages = (NodeList) expression.evaluate(doc, XPathConstants.NODESET);
         addPackagesFailingFromNodeList(coverageResults, matchingPackages);

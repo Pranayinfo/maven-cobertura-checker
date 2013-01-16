@@ -2,10 +2,15 @@ package com.tacitknowledge.cobertura.report;
 
 /**
  * Package coverage configuration
+ *
  */
 public class PackageConfig
 {
-    private String regex;
+    /**
+     * Prefixes allow for wild cards.  for instance java.lang.*
+     *
+     */
+    private String nameOrPrefix;
     private Double branchRate = 0.0;
     private Double lineRate = 0.0;
 
@@ -14,22 +19,22 @@ public class PackageConfig
         this(null,0.0,0.0);
     }
 
-    public PackageConfig(String regex, Double branchRate, Double lineRate)
+    public PackageConfig(String nameOrPrefix, Double branchRate, Double lineRate)
     {
 
-        this.regex = regex;
+        this.nameOrPrefix = nameOrPrefix;
         this.branchRate = branchRate;
         this.lineRate = lineRate;
     }
 
-    public String getRegex()
+    public String getNameOrPrefix()
     {
-        return regex;
+        return nameOrPrefix;
     }
 
-    public void setRegex(String regex)
+    public void setNameOrPrefix(String nameOrPrefix)
     {
-        this.regex = regex;
+        this.nameOrPrefix = nameOrPrefix;
     }
 
     public Double getBranchRate()
@@ -66,7 +71,7 @@ public class PackageConfig
 
         PackageConfig that = (PackageConfig) o;
 
-        if ( regex != null ? !regex.equals(that.regex) : that.regex != null )
+        if ( nameOrPrefix != null ? !nameOrPrefix.equals(that.nameOrPrefix) : that.nameOrPrefix != null )
         {
             return false;
         }
@@ -77,6 +82,6 @@ public class PackageConfig
     @Override
     public int hashCode()
     {
-        return regex != null ? regex.hashCode() : 0;
+        return nameOrPrefix != null ? nameOrPrefix.hashCode() : 0;
     }
 }
