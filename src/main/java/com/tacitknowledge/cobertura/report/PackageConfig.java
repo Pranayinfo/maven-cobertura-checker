@@ -14,6 +14,9 @@ public class PackageConfig
     private Double branchRate = 0.0;
     private Double lineRate = 0.0;
 
+    /**
+     * default for dependency injection by maven
+     */
     public PackageConfig()
     {
         this(null,0.0,0.0);
@@ -32,30 +35,18 @@ public class PackageConfig
         return nameOrPrefix;
     }
 
-    public void setNameOrPrefix(String nameOrPrefix)
-    {
-        this.nameOrPrefix = nameOrPrefix;
-    }
 
     public Double getBranchRate()
     {
         return branchRate;
     }
 
-    public void setBranchRate(Double branchRate)
-    {
-        this.branchRate = branchRate;
-    }
 
     public Double getLineRate()
     {
         return lineRate;
     }
 
-    public void setLineRate(Double lineRate)
-    {
-        this.lineRate = lineRate;
-    }
 
     @Override
     public boolean equals(Object o)
