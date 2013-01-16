@@ -2,6 +2,7 @@
 <!DOCTYPE coverage SYSTEM "http://cobertura.sourceforge.net/xml/coverage-04.dtd">
 <coverage lines-valid="2"  lines-covered="2"  line-rate="1"  branches-valid="0.0"  branches-covered="0.0"  branch-rate="1"  timestamp="1356110502240" complexity="0" version="0.1">
 <sources />
+
 <packages>
 	<package name="js"  line-rate="1"  branch-rate="1" >
 	<classes>
