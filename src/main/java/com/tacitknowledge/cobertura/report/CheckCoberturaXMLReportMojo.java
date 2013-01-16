@@ -33,6 +33,8 @@ import java.util.Collection;
  *
  * Please note that this implementation does not support full regex expressions for package names
  * It only supports final wildcards e.g. java.lang.*
+ *
+ * This targets the http://cobertura.sourceforge.net/xml/coverage-04.dtd version of the report
  */
 @Mojo(
     name = "check",
