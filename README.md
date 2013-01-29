@@ -1,7 +1,8 @@
 
-This processes a cobertura formatted XML report against coverage requirements.  This is for use with Testacular
+This processes a cobertura formatted XML report against coverage requirements.  This is for use with [Testacular] (http://url.com/ "Title")
 which generates a cobertura formatted report but does not check coverage by itself.
 
+[example](http://url.com/ "Title")
 Testacular does not allow complete control over the directory which outputs its reports.  It creates subdirectories
 named by browser, browser version, and operating system.  maven properties and profiles can handle these situations.
 
