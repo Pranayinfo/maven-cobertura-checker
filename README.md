@@ -1,4 +1,6 @@
 
+# Introduction and Motivation
+
 This processes a cobertura formatted XML report against coverage requirements.  This is for use with [Testacular] (https://github.com/testacular/ "Testacular")
 which generates a cobertura formatted report but does not check coverage by itself.
 
@@ -9,6 +11,8 @@ named by browser, browser version, and operating system.  maven properties and p
 the standard cobertura maven plugin does have a check goal, but it was unusable against previously generated reports.
 
 Target report DTD: http://cobertura.sourceforge.net/xml/coverage-04.dtd
+
+# Use it!
 
 The sample directory contains a maven pom that exercises the plugin.  Please see it for more details.
 
@@ -54,5 +58,19 @@ Sample Usage:
                         <goals>
                             <goal>check</goal>
                         </goals>
+
+
+# Licensing
+
+This framework is released under Apache 2.0 Public License. The text of the
+license you can find at http://www.apache.org/licenses/LICENSE-2.0.txt.
+
+## Contributing
+
+1. Fork it
+2. Create your feature branch (`git checkout -b my-new-feature`)
+3. Commit your changes (`git commit -am 'Added some feature'`)
+4. Push to the branch (`git push origin my-new-feature`)
+5. Create new Pull Request
 
 
