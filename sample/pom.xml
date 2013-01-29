@@ -37,8 +37,14 @@
                         <id>process-js-coverage</id>
                         <phase>verify</phase>
                         <configuration>
-                            <!-- note that testacular will create multiple sub directories
-                                 based on browser and operating system -->
+                             <!-- note that testacular will create multiple sub directories
+                                 based on browser and operating system.  These need to be configured.
+                                 An example is this sub directory for executing in Phantom JS on a mac.
+
+                                     'PhantomJS 1.7 (Mac)'
+
+                                     To handle running the build on different platforms, use profile overrides
+                                 -->
                             <inputFile>jstest/${cobertura.report.dir}/coverage.xml</inputFile>
                             <skip>false</skip>
                             <haltOnFailure>true</haltOnFailure>
@@ -58,7 +64,7 @@
                                     <branchRate>0.5</branchRate>
                                     <lineRate>0.5</lineRate>
                                 </PackageConfig>
-                                <!-- override for specific -->
+                                <!-- override for specific package -->
                                 <PackageConfig>
                                     <nameOrPrefix>java.util.concurrent</nameOrPrefix>
                                     <branchRate>0.5</branchRate>
