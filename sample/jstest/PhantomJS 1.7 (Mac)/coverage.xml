@@ -1,0 +1,48 @@
+<?xml version="1.0" ?>
+<!DOCTYPE coverage SYSTEM "http://cobertura.sourceforge.net/xml/coverage-04.dtd">
+<coverage lines-valid="2"  lines-covered="2"  line-rate="1"  branches-valid="0.0"  branches-covered="0.0"  branch-rate="1"  timestamp="1356110502240" complexity="0" version="0.1">
+<sources />
+
+<packages>
+	<package name="js"  line-rate="1"  branch-rate="1" >
+	<classes>
+		<class name="sample.js"  filename="./main/webapp/js/sample.js"  line-rate="1"  branch-rate="1" >
+		<methods>
+			<method name="helloWorld"  hits="1"  signature="()V"  />
+		</methods>
+		<lines>
+			<line number="1"  hits="1"  branch="false" />
+			<line number="2"  hits="1"  branch="false" />
+		</lines>
+		</class>
+	</classes>
+	</package>
+
+    <package name="js-uncovered"  line-rate="0.0"  branch-rate="0.0" >
+    <classes>
+        <class name="sample.js"  filename="./main/webapp/js/sample.js"  line-rate="0.0"  branch-rate="0.0" >
+        <methods>
+            <method name="helloWorld"  hits="0.0"  signature="()V"  />
+        </methods>
+        <lines>
+            <line number="1"  hits="0.0"  branch="false" />
+            <line number="2"  hits="0.0"  branch="false" />
+        </lines>
+        </class>
+    </classes>
+    </package>
+    <package name="js.subpackage"  line-rate="0.0"  branch-rate="0.0" >
+    <classes>
+        <class name="sample.js"  filename="./main/webapp/js/sample.js"  line-rate="0.0"  branch-rate="0.0" >
+        <methods>
+            <method name="helloWorld"  hits="0.0"  signature="()V"  />
+        </methods>
+        <lines>
+            <line number="1"  hits="0.0"  branch="false" />
+            <line number="2"  hits="0.0"  branch="false" />
+        </lines>
+        </class>
+    </classes>
+    </package>
+</packages>
+</coverage>
