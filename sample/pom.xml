@@ -44,8 +44,8 @@
                             <haltOnFailure>true</haltOnFailure>
 
                             <!-- apply these to coverage element of report total -->
-                            <totalLineRate>0.0</totalLineRate>
-                            <totalBranchRate>0.0</totalBranchRate>
+                            <totalLineRate>1.0</totalLineRate>
+                            <totalBranchRate>1.0</totalBranchRate>
 
                             <!-- apply these to each package -->
                             <lineRate>0.0</lineRate>
